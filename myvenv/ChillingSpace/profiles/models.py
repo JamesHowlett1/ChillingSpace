@@ -8,10 +8,16 @@ class Profile(models.Model):
     last_name = models.CharField(max_length = 50, blank=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     email = models.EmailField(max_length = 200, blank=True)
-    avatar = models.ImageField(default='avatar.png', upload_to='avatars')
+    avatar = models.ImageField(default='.\static\profiles\images\avatar.png', upload_to='avatars')
     nickname = models.CharField(max_length = 50)
     created = models.DateTimeField(auto_now_add = True)
     friends = models.ManyToManyField(User, blank=True, related_name ='friends')
+
+    def get_friends(self):
+        return self.friends.all()
+
+    def get_friends_no(self):
+        return self.friends.all().count()
 
     def __str__(self):
         return f"{self.nickname}-{self.created.strftime('%d-%m-%y')}"
