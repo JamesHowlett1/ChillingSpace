@@ -1,29 +1,29 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
   My Profile
 {% endblock title %}
 
 {% block content %}
-<h1>My profile: {{profile}}</h1>
-<hr>
-<img src={{profile.avatar.url}}>
-<div class="">
-  {{profile.first_name}}
-  {{profile.last_name}}
-</div>
-<br>
-<div class="">
-  {{profile.get_friends_no}}
-  <ul>
-    {% for friend in profile.get_friends %}
-      <li>{{friend}}</li>
-    {% endfor %}
-  </ul>
-</div>
+  <h1>My profile: {{profile}}</h1>
+  <hr>
+  <img src="{% static "profiles/images/avatar.png" %}">
+  <div class="">
+    {{profile.first_name}}
+    {{profile.last_name}}
+  </div>
+  <br>
+  <div class="">
+    {{profile.get_friends_no}}
+    <ul>
+      {% for friend in profile.get_friends %}
+        <li>{{friend}}</li>
+      {% endfor %}
+    </ul>
+  </div>
 
 {% endblock content %}
 
 {% block scripts %}
 {% endblock scripts %}
-  
